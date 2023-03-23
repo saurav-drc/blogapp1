@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -22,6 +24,7 @@ public class Category {
     private String categoryDescription;
 
     @OneToMany(mappedBy = "category",cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-    private Set<Post>posts= new HashSet<>();
+    //private Set<Post>posts= new HashSet<>();
+    private List<Post>posts = new ArrayList<>();
 
 }

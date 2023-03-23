@@ -2,6 +2,7 @@ package com.blogger.blogapp.service;
 
 import com.blogger.blogapp.entities.Post;
 import com.blogger.blogapp.payload.PostDto;
+import com.blogger.blogapp.payload.PostResponse;
 import javafx.geometry.Pos;
 
 import java.util.List;
@@ -18,16 +19,16 @@ public interface PostService {
     PostDto getPostById(Long id);
 
     //GET ALL POST
-    List<PostDto> getAllPosts();
+    PostResponse getAllPosts(int pageNumber, int pageSize,String sortBy);
 
     //DELETE
-    void deletePost(PostDto postDto);
+    void deletePost(Long id);
 
     //GET POST BY CATEGORY-ID
-    List<Post> getPostByCategory(Long categoryId);
+    List<PostDto> getPostsByCategory(Long categoryId);
 
     //GET POST BY USER
-    List<Post> getPostByUser(Long id);
+    List<PostDto> getPostsByUser(Long id);
 
     //Search posts
 

@@ -1,22 +1,21 @@
 package com.blogger.blogapp.payload;
 
-
 import com.blogger.blogapp.entities.Category;
 import com.blogger.blogapp.entities.User;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.validation.constraints.NotBlank;
-import java.util.Date;
+
+import java.util.*;
 
 @Data
 @NoArgsConstructor
 public class PostDto {
 
-    @NotBlank
+    private long id;
+
     private String title;
 
-    @NotBlank
     private String content;
 
     private Date date;
@@ -26,6 +25,13 @@ public class PostDto {
     private CategoryDto category;
 
     private UserDto user;
+
+
+    //Using this we can directly get the comment of posts
+    //we won't have to create a separate getmapping for comment
+    //private Set<CommentDto> comments = new HashSet<>();
+    private List<CommentDto> comments = new ArrayList<>();
+
 
 
 }
