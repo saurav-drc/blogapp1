@@ -1,7 +1,9 @@
 package com.blogger.blogapp.service.Impl;
 
+import com.blogger.blogapp.entities.Category;
 import com.blogger.blogapp.entities.User;
 import com.blogger.blogapp.exception.ResourceNotFoundException;
+import com.blogger.blogapp.payload.CategoryDto;
 import com.blogger.blogapp.payload.UserDto;
 import com.blogger.blogapp.repository.UserRepository;
 import com.blogger.blogapp.service.UserService;
@@ -22,9 +24,13 @@ public class UserServiceImpl implements UserService {
     //CREATE
     @Override
     public UserDto createUser(UserDto userDto) {
-        User user = dtoToUser(userDto);
+        User  user = modelMapper.map(userDto, User.class);
         User savedUser = userRepository.save(user);
-         return userToDto(savedUser);
+        return modelMapper.map(savedUser, UserDto.class);
+
+        //User user = dtoToUser(userDto);
+        //User savedUser = userRepository.save(user);
+         //return userToDto(savedUser);
     }
     //UPDATE
     @Override
@@ -35,19 +41,26 @@ public class UserServiceImpl implements UserService {
         user.setPassword(userDto.getPassword());
         user.setAbout(userDto.getAbout());
         User updatedUser = userRepository.save(user);
-        return userToDto(updatedUser);
+        return modelMapper.map(updatedUser, UserDto.class);
+
+       // return userToDto(updatedUser);
     }
     //GET BY ID
     @Override
     public UserDto getUserById(Long id) {
         User user = userRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
-        return userToDto(user);
+        return modelMapper.map(user, UserDto.class);
+
+        //return userToDto(user);
     }
     //GET ALL
     @Override
     public List<UserDto> getALlUsers() {
         List<User> users = userRepository.findAll();
-         return users.stream().map(user -> userToDto(user)).collect(Collectors.toList());
+        List<UserDto> userDtos = users.stream().map((user) -> modelMapper.map(user, UserDto.class)).collect(Collectors.toList());
+        return userDtos;
+
+        //return users.stream().map(user -> userToDto(user)).collect(Collectors.toList());
 
     }
     //DELETE
@@ -58,20 +71,23 @@ public class UserServiceImpl implements UserService {
 
     }
 
+
+
+
     //Entity to Dto
-    private UserDto userToDto(User user){
-        UserDto userDto = modelMapper.map(user, UserDto.class);
+    //private UserDto userToDto(User user){
+       // UserDto userDto = modelMapper.map(user, UserDto.class);
 //        UserDto userDto = new UserDto();
 //        userDto.setId(user.getId());
 //        userDto.setName(user.getName());
 //        userDto.setEmail(user.getEmail());
 //        userDto.setPassword(user.getPassword());
 //        userDto.setAbout(user.getAbout());
-        return userDto;
-    }
+       // return userDto;
+    //}
     //Dto to Entity
-    private User dtoToUser(UserDto userDto){
-        User user = modelMapper.map(userDto, User.class);
+    //private User dtoToUser(UserDto userDto){
+       // User user = modelMapper.map(userDto, User.class);
 
 //        User user= new User();
 //        user.setId(userDto.getId());
@@ -79,6 +95,8 @@ public class UserServiceImpl implements UserService {
 //        user.setEmail(userDto.getEmail());
 //        user.setPassword(userDto.getPassword());
 //        user.setAbout(userDto.getAbout());
-        return user;
-    }
+       // return user;
+   // }
+
+
 }

@@ -1,4 +1,3 @@
-
 package com.blogger.blogapp.payload;
 
 import lombok.Data;

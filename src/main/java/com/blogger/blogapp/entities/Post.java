@@ -21,7 +21,6 @@ public class Post {
     private String imageName;
     private Date date;
 
-
     @ManyToOne
     private Category category;
 
@@ -31,7 +30,6 @@ public class Post {
     @OneToMany(mappedBy = "post",cascade = CascadeType.ALL)
     //private Set<Comment> comments = new HashSet<>();
     private List<Comment> comments = new ArrayList<>();
-
 
 
 }

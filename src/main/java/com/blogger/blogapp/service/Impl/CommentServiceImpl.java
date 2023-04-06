@@ -1,8 +1,10 @@
 package com.blogger.blogapp.service.Impl;
 
+import com.blogger.blogapp.entities.Category;
 import com.blogger.blogapp.entities.Comment;
 import com.blogger.blogapp.entities.Post;
 import com.blogger.blogapp.exception.ResourceNotFoundException;
+import com.blogger.blogapp.payload.CategoryDto;
 import com.blogger.blogapp.payload.CommentDto;
 import com.blogger.blogapp.payload.PostDto;
 import com.blogger.blogapp.repository.CommentRepository;
@@ -38,4 +40,6 @@ public class CommentServiceImpl implements CommentService {
         commentRepository.delete(comment);
 
     }
+
+
 }

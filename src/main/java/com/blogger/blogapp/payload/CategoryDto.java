@@ -17,6 +17,4 @@ public class CategoryDto {
     @NotBlank
     private String categoryDescription;
 
-
-
 }
